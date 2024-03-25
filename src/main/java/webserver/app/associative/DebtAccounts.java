@@ -1,6 +1,8 @@
 package webserver.app.associative;
 
 import jakarta.persistence.*;
+import webserver.app.accounts.Account;
+import webserver.app.debt.Debt;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -24,4 +26,14 @@ public class DebtAccounts {
             updatable = false
     )
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name="debt_id")
+    Debt debt;
+
+    @ManyToOne
+    @JoinColumn(name="acc_id")
+    Account account;
+
+
 }
