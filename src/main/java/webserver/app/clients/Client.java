@@ -2,15 +2,17 @@ package webserver.app.clients;
 
 import jakarta.persistence.*;
 import jakarta.persistence.GenerationType;
+import webserver.app.associative.ClientsAccounts;
 
 import java.util.Date;
+import java.util.Set;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Entity
-@Table(
+    @Table(
         name="client"
-)
+    )
 public class Client {
     @Id
     @SequenceGenerator(
@@ -28,6 +30,8 @@ public class Client {
             updatable = false
     )
     private Long client_id;
+    @OneToMany(mappedBy = "client")
+    Set<ClientsAccounts> data;
 
     @Column(
             name="client_fname",
