@@ -1,0 +1,9 @@
+POST http://localhost:8080/api/clients
+Content-Type: application/json
+
+{
+  "name": "andrzej",
+  "email": "amdrzekkcc@gmail.com",
+  "dob": "2000-08-05"
+}
+
