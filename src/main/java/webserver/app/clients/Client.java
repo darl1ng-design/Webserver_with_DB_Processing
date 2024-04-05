@@ -61,14 +61,6 @@ public class Client {
     private String address;
 
     @Column(
-            name="client_email",
-            nullable = false,
-            columnDefinition = "TEXT",
-            unique = true
-    )
-    private String email;
-
-    @Column(
             name="date_of_birth",
             nullable = false
     )
@@ -79,13 +71,11 @@ public class Client {
             String client_lname,
             Long PESEL,
             String address,
-            String email,
             String dob){
         this.client_fname = client_fname;
         this.client_lname = client_lname;
         this.PESEL = PESEL;
         this.address = address;
-        this.email = email;
         this.dob = dob;
     }
 
@@ -131,14 +121,6 @@ public class Client {
         this.address = address;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getDob() {
         return dob;
     }
@@ -155,7 +137,6 @@ public class Client {
                 ", client_lname='" + client_lname + '\'' +
                 ", PESEL=" + PESEL +
                 ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
                 ", dob='" + dob + '\'' +
                 '}';
     }

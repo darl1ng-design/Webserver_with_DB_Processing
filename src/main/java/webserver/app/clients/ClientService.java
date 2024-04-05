@@ -25,9 +25,8 @@ public class ClientService {
 
     public void AddClient(Client c){
         Optional<Client> clientPESEL = clientRepository.findClientByPESEL(c.getPESEL());
-        Optional<Client> clientEmail = clientRepository.findClientByEmail(c.getEmail());
 
-        if(clientPESEL.isPresent() || clientEmail.isPresent()){
+        if(clientPESEL.isPresent()){
             throw new IllegalStateException("Client already exists in database");
         }
         clientRepository.save(c);
@@ -41,7 +40,7 @@ public class ClientService {
         clientRepository.deleteById(clientId);
     }
 @Transactional
-    public void updateClient(Long clientId, String lname, String email){
+    public void updateClient(Long clientId, String lname, Long pesel){
         Client c = clientRepository.findById(clientId).orElseThrow(
                 () -> new IllegalStateException(
                         "Client with id of" + clientId + "does not exist"
@@ -51,12 +50,12 @@ public class ClientService {
             c.setClient_lname(lname);
         }
 
-        if(email != null && !email.isBlank() && !Objects.equals(c.getEmail(), email)){
-            Optional<Client> clientOp = clientRepository.findClientByEmail(email);
+        if(pesel != null && !Objects.equals(c.getPESEL(), pesel)){
+            Optional<Client> clientOp = clientRepository.findClientByPESEL(pesel);
                 if(clientOp.isPresent()){
                     throw new IllegalStateException("E-mail is taken");
                 }
-            c.setEmail(email);
+            c.setPESEL(pesel);
          }
     }
 }

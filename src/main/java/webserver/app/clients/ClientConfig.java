@@ -15,7 +15,6 @@ public class ClientConfig {
                     "Brown",
                     11111111111L,
                     "Beautiful 11A Street",
-                    "alexbrown12@gmail.com",
                     "2001-12-03"
             );
             Client c2 = new Client(
@@ -23,12 +22,18 @@ public class ClientConfig {
                     "Tomson",
                     22222222222L,
                     "Angels 3B Street",
-                    "mariatomson1992@gmail.com",
                     "1992-11-02"
+            );
+            Client c3 = new Client(
+                    "Damian",
+                    "Floyd",
+                    33333333333L,
+                    "Hashbrown 3F Street",
+                    "1985-01-09"
             );
             clientRepository.saveAll(
                     List.of(
-                            c1,c2
+                            c1,c2, c3
                     )
             );
         };

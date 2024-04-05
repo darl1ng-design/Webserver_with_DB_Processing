@@ -47,6 +47,13 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
             nullable = false
     )
     private String password;
+    @Column(
+            name="account_email",
+            nullable = false,
+            columnDefinition = "TEXT",
+            unique = true
+    )
+    private String email;
 
     @Column(
             name = "account_type",
@@ -70,14 +77,20 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
     public Account(
            String login,
            String password,
+           String email,
            String account_type,
            String account_opening_date,
            String account_closure_date){
         this.login = login;
         this.password = password;
+        this.email = email;
         this.account_type = account_type;
         this.account_opening_date = account_opening_date;
         this.account_closure_date = account_closure_date;
+    }
+
+    public Account() {
+
     }
 
     public Long getAccId() {
@@ -102,6 +115,14 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAccount_type() {

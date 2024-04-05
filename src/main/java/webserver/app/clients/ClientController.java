@@ -24,7 +24,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public void RegisterClient(@RequestBody Client client){
+    public void AddClient(@RequestBody Client client){
         clientService.AddClient(client);
     }
 
@@ -34,7 +34,7 @@ public class ClientController {
     }
 
     @PutMapping(path="{clientId}")
-    public void UpdateClient(@PathVariable("clientId") Long clientId, String lname, String email){
-        clientService.updateClient(clientId, lname, email);
+    public void UpdateClient(@PathVariable("clientId") Long clientId, String lname, Long pesel){
+        clientService.updateClient(clientId, lname, pesel);
     }
 }
