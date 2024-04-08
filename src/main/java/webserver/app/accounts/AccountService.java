@@ -1,6 +1,7 @@
 package webserver.app.accounts;
 //logic for API methods on account Table
 
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,14 @@ public class AccountService {
         Optional<Account> byLogin = accountRepository.findAccountByLogin(a.getLogin());
         Optional<Account> byEmail = accountRepository.findAccountByEmail(a.getEmail());
             if(byLogin.isPresent() || byEmail.isPresent()){
-                throw new IllegalStateException("Account of this instance already exists");
+                throw new EntityExistsException("Account of this instance already exists");
             }
         accountRepository.save(a);
     }
 
     public void deleteAccount(Long id){
         boolean exists = accountRepository.existsById(id);
-            if(!exists) throw new IllegalStateException("Account does not exist");
+            if(!exists) throw new EntityNotFoundException("Account does not exist");
         accountRepository.deleteById(id);
     }
 
@@ -45,7 +46,7 @@ public class AccountService {
         if(email != null && !email.isBlank() && !Objects.equals(acc.getEmail(), email)){
            Optional<Account> acc_email =  accountRepository.findAccountByEmail(email);
             if(acc_email.isPresent()){
-                throw new IllegalStateException("user with following email" + acc_email + "exists");
+                throw new EntityExistsException("user with following email" + acc_email + "exists");
             }
         }
     acc.setEmail(email);

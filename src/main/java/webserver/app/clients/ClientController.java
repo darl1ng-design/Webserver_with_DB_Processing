@@ -34,7 +34,10 @@ public class ClientController {
     }
 
     @PutMapping(path="{clientId}")
-    public void UpdateClient(@PathVariable("clientId") Long clientId, String lname, Long pesel){
-        clientService.updateClient(clientId, lname, pesel);
+    public void UpdateClient(
+            @PathVariable("clientId") Long clientId,
+            @RequestParam(required = false) String lname,
+            @RequestParam(required = false) Long pesel){
+    clientService.updateClient(clientId, lname, pesel);
     }
 }

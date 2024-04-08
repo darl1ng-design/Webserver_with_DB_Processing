@@ -1,0 +1,17 @@
+POST http://localhost:8080/api/accounts
+Content-Type: application/json
+
+{
+  "login": "test",
+  "password": "test",
+  "email": "test@test",
+  "account_type": "test",
+  "account_opening_date": "test",
+  "account_closure_date": "test"
+}
+
+###
+PUT http://localhost:8080/api/accounts/4?email=test@test1
+
+
+###

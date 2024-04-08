@@ -1,0 +1,16 @@
+POST http://localhost:8080/api/clients
+Content-Type: application/json
+
+{
+  "client_fname": "Andrew",
+  "client_lname": "Eubanks",
+  "address": "Armenian street 23A",
+  "dob": "2003-02-15",
+  "pesel": 44444444444
+}
+###
+PUT http://localhost:8080/api/clients/4?pesel=1213
+
+
+
+
